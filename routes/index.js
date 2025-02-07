@@ -12,7 +12,7 @@ const db = getFirestore();
 let foodData = []
 
 refreshFoodData()
-setInterval(refreshFoodData, 1000 * 60 * 30); // Elke 60 minuten?
+setInterval(refreshFoodData, 1000 * 60 * 60); // Elke 60 minuten?
 
 async function refreshFoodData() {
   console.log("refreshing FoodData")
