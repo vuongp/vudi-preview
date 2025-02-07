@@ -10,10 +10,10 @@
         </div>
     </section>
 
-    <div class="gallery style1 medium lightbox onscroll-fade-in">
+    <div class="gallery style1 small lightbox onscroll-fade-in">
         {{#each foodList}}
         <article>
-            <a href="{{imageUrl}}" target="_blank"  class="image">
+            <a href="{{imageUrl}}" target="_blank" class="image">
                 <img src="{{imageUrl}}" alt="Fooooood" />
             </a>
             <div class="caption">
@@ -26,7 +26,7 @@
                 </h5>
                 <p>on {{dateTime}}</p>
                 {{#if latitude}}
-                    <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}" class="button big wide smooth-scroll-middle">Location</a>
+                    <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}" target="_blank"  class="button">Location</a>
                 {{/if}}
             </div>
         </article>
