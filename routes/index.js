@@ -45,7 +45,7 @@ async function refreshFoodData() {
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  let bannerUrl = foodData[0].items[Math.floor(Math.random() * foodData.length)].imageUrl
+  let bannerUrl = foodData[0].items[Math.floor(Math.random() * foodData[0].length)].imageUrl
 
   res.render('index', {title: 'Vuong\'s food', foodList: foodData, bannerUrl: bannerUrl});
 });
