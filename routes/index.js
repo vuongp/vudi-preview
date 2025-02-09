@@ -16,27 +16,44 @@ setInterval(refreshFoodData, 1000 * 60 * 60); // Elke 60 minuten?
 
 async function refreshFoodData() {
   console.log("refreshing FoodData")
+  let twoMonthsEarlier = new Date();
+  twoMonthsEarlier.setMonth(twoMonthsEarlier.getMonth() - 1);
+  twoMonthsEarlier.setHours(0,0,0,0)
+  twoMonthsEarlier.setDate(1);
+
+  console.log(twoMonthsEarlier)
   let newArray = [];
   const snapshot = await db
       .collection('food')
       .where('ownerId', '==', 'cHO2bLdsCPbNan2dYyLJ62G6ACc2')
+      .where('date', '>', twoMonthsEarlier)
       .orderBy('date', 'desc')
       .get();
   snapshot.forEach((doc) => {
-    newArray.push(doc.data())
+    let month = newArray.find((element) => element.month === getMonthYear(doc.data()));
+    if (!month) {
+      month = {
+        month: getMonthYear(doc.data()),
+        items: []
+      }
+      newArray.push(month)
+    }
+    month.items.push(doc.data())
   });
   foodData = newArray
 }
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  let bannerUrl = foodData[Math.floor(Math.random() * foodData.length)].imageUrl
+  let bannerUrl = foodData[0].items[Math.floor(Math.random() * foodData.length)].imageUrl
 
   res.render('index', {title: 'Vuong\'s food', foodList: foodData, bannerUrl: bannerUrl});
 });
 
-router.get('/.json', async function (req, res, next) {
-  res.json(foodData)
-});
+function getMonthYear(element) {
+  if (!element.date) return "old"
+  let date = new Date(element.date._seconds * 1000);
+  return (date.getMonth() + 1) + "/" + date.getFullYear()
+}
 
 module.exports = router;
