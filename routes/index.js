@@ -10,9 +10,27 @@ initializeApp({
 const db = getFirestore();
 
 let foodData = []
+let top = {}
 
 refreshFoodData()
-setInterval(refreshFoodData, 1000 * 60 * 60); // Elke 60 minuten?
+setInterval(refreshFoodData, 1000 * 60 * 60); // Elk uur
+
+refreshTop()
+setInterval(refreshTop, 1000 * 60 * 60 * 12); // Elke 12 uur
+
+async function refreshTop() {
+  console.log("refreshing top")
+  const snapshot = await db
+      .collection('food')
+      .where('ownerId', '==', 'cHO2bLdsCPbNan2dYyLJ62G6ACc2')
+      .orderBy('rating', 'desc')
+      .limit(3)
+      .get();
+  let index = 1
+  snapshot.forEach((doc) => {
+    top[index++] = doc.data()
+  });
+}
 
 async function refreshFoodData() {
   console.log("refreshing FoodData")
@@ -47,7 +65,13 @@ async function refreshFoodData() {
 router.get('/', async function (req, res, next) {
   let bannerUrl = foodData[0].items[Math.floor(Math.random() * foodData[0].items.length)].imageUrl
 
-  res.render('index', {title: 'Vuong\'s food', foodList: foodData, bannerUrl: bannerUrl});
+  res.render('index', {title: 'Vuong\'s food', foodList: foodData, bannerUrl: bannerUrl, top: top});
+});
+
+
+/* GET home page. */
+router.get('/.json', async function (req, res, next) {
+  res.json(top)
 });
 
 function getMonthYear(element) {

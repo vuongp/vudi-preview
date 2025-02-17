@@ -1,20 +1,87 @@
 <div id="wrapper" class="divided">
-    <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in">
+    <section class="banner style3 orient-left content-align-left image-position-left fullscreen onload-image-fade-in">
         <div class="content">
             <h1>Welcome to Vudi</h1>
-            <p class="major">This is my up-to-date food log. Updated by the Vudi app! One day you'll start your food journey on this app :)</p>
+            <p class="major">This is my up-to-date food log. Updated by the Vudi app! One day you'll start your food
+                journey on this app :)</p>
             <p>by <a href="https://vuong.work">vuong.work</a></p>
         </div>
         <div class="image">
-            <img src="{{bannerUrl}}" alt="" />
+            <img src="{{bannerUrl}}" alt=""/>
         </div>
     </section>
+
+    <section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
+             id="first">
+        <div class="content">
+            <h2>
+                {{top.1.dish}} @{{top.1.place}}
+            </h2>
+            <p>
+                {{#if top.1.rating}}
+                    Rated: {{top.1.rating}}/100
+                {{else}}
+                    Unrated
+                {{/if}} on {{top.1.dateTime}}</p>
+            {{#if top.1.latitude}}
+                <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{top.1.latitude}}+{{top.1.longitude}}"
+                   target="_blank" class="button">Location</a>
+            {{/if}}
+        </div>
+        <div class="image">
+            <img src="{{top.1.imageUrl}}" alt=""/>
+        </div>
+    </section>
+
+    <section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+        <div class="content">
+            <h2>
+                {{top.2.dish}} @{{top.2.place}}
+            </h2>
+            <p>
+                {{#if top.2.rating}}
+                    Rated: {{top.2.rating}}/100
+                {{else}}
+                    Unrated
+                {{/if}} on {{top.2.dateTime}}</p>
+            {{#if top.2.latitude}}
+                <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{top.2.latitude}}+{{top.2.longitude}}"
+                   target="_blank" class="button">Location</a>
+            {{/if}}
+        </div>
+        <div class="image">
+            <img src="{{top.2.imageUrl}}" alt=""/>
+        </div>
+    </section>
+
+    <section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
+             id="first">
+        <div class="content">
+            <h2>
+                {{top.3.dish}} @{{top.3.place}}
+            </h2>
+            <p>
+                {{#if top.3.rating}}
+                    Rated: {{top.3.rating}}/100
+                {{else}}
+                    Unrated
+                {{/if}} on {{top.3.dateTime}}</p>
+            {{#if top.3.latitude}}
+                <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{top.3.latitude}}+{{top.3.longitude}}"
+                   target="_blank" class="button">Location</a>
+            {{/if}}
+        </div>
+        <div class="image">
+            <img src="{{top.3.imageUrl}}" alt=""/>
+        </div>
+    </section>
+
     <section class="wrapper style1 align-center">
         <div class="gallery style1 medium lightbox onscroll-fade-in">
             {{#each foodList.[0].items}}
                 <article>
                     <a class="image">
-                        <img src="{{imageUrl}}" alt="Fooooood" />
+                        <img src="{{imageUrl}}" alt="Fooooood"/>
                     </a>
                     <div class="caption">
                         <h5>
@@ -26,13 +93,15 @@
                         </h5>
                         <p>on {{dateTime}}</p>
                         {{#if latitude}}
-                            <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}" target="_blank"  class="button">Location</a>
+                            <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}"
+                               target="_blank" class="button">Location</a>
                         {{/if}}
                     </div>
                 </article>
             {{/each}}
         </div>
     </section>
+
     <section class="wrapper style1 align-center">
         <div class="inner">
             <h2>Last month</h2>
@@ -41,7 +110,7 @@
             {{#each foodList.[1].items}}
                 <article>
                     <a class="image">
-                        <img src="{{imageUrl}}" alt="Fooooood" />
+                        <img src="{{imageUrl}}" alt="Fooooood"/>
                     </a>
                     <div class="caption">
                         <h5>
@@ -53,7 +122,8 @@
                         </h5>
                         <p>on {{dateTime}}</p>
                         {{#if latitude}}
-                            <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}" target="_blank"  class="button">Location</a>
+                            <a href="http://maps.google.com/maps?z=12&t=m&q=loc:{{latitude}}+{{longitude}}"
+                               target="_blank" class="button">Location</a>
                         {{/if}}
                     </div>
                 </article>
@@ -63,11 +133,14 @@
     <footer class="wrapper style1 align-center">
         <div class="inner">
             <ul class="icons">
-                <li><a target="_blank" href="https://www.instagram.com/vuongee/" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a target="_blank" href="https://www.linkedin.com/in/vuongp/" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                <li><a target="_blank" href="mailto:h.vuongpham@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+                <li><a target="_blank" href="https://www.instagram.com/vuongee/"
+                       class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/vuongp/"
+                       class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                <li><a target="_blank" href="mailto:h.vuongpham@gmail.com" class="icon style2 fa-envelope"><span
+                        class="label">Email</span></a></li>
             </ul>
-            <p>Vudi preview 2025, Design: <a href="https://html5up.net" target="_blank" >HTML5 UP</a>.</p>
+            <p>Vudi preview 2025, Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a>.</p>
         </div>
     </footer>
 </div>
